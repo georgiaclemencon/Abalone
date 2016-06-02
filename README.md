@@ -9,7 +9,8 @@ Il y a déjà eu plusieurs recherches réalisées sur ce jeu mais comme il reste
 
 	•	« Constructing an Abalone Game-Playing Agent » (Université de Maastricht - Juin 2005) de Nyree Lemmens présentant un arbre de recherche d’une profondeur de 2.
 
-	•	« A Simple Intelligent Agent for Playing Abalone Game : ABLA » de Ender Ozcan et Berk Hulagu,  à propos d’une intelligence artificielle utilisant l’algorithme AlphaBeta. La profondeur est alors de 3 à 4 avec utilisation de deux fonctions d’évaluations.
+	•	« A Simple Intelligent Agent for Playing Abalone Game : ABLA » de Ender Ozcan et Berk Hulagu,  à propos d’une intelligence artificielle utilisant l’algorithme AlphaBeta. 
+	La profondeur est alors de 3 à 4 avec utilisation de deux fonctions d’évaluations.
 
 	•	« Algorithmic Fun- Abalone » de Oswin Aicholzer, Franz Aurenhammer et Tino Werner qui explique la programmation d’un agent utilisant la recherche alpha-beta avec des fonctions d’évaluations permettant le développement d’un arbre d’une profondeur de 9.
 
@@ -24,13 +25,14 @@ Il y a plusieurs placements possibles au départ, les plus populaires sont :
 
 « La marguerite Belge » surtout utilisée en compétition car cette formation est plus agressive au début du jeu.
 
-Nous avons de notre côté fait le choix d’implémenter d’autres positions pour permettre à notre jeu d’être plus fourni. C’est pourquoi nous avons également retenu la Marguerite Allemande, l’Alien, la Domination, l’Infiltration, le Wall, les Snakes et le « face à face » dont les dispositions sont disponibles en annexe.
-Mouvements possibles
+J'ai fait le choix d’implémenter d’autres positions pour permettre à ce jeu d’être plus fourni. C’est pourquoi j'ai également retenu la Marguerite Allemande, l’Alien, la Domination, l’Infiltration, le Wall, les Snakes et le « face à face » dont les dispositions sont disponibles en annexe.
+
+#Mouvements possibles
 
 A chaque tour, chaque joueur peut faire un mouvement d’une, deux, ou trois billes de sa couleur. 
 Plusieurs billes peuvent uniquement être bougées si elles sont connexes aux autres billes et si elles sont en ligne. De plus, toutes les billes doivent être déplacées dans la même direction. Il est possible de déplacer les billes par le côté, le long de la position courante des billes. 
 
-Les mouvements « Sumito » et les situations spéciales
+#Les mouvements « Sumito » et les situations spéciales
 
 Pour pouvoir pousser les billes de son adversaire, le joueur doit se trouver en position de Sumito, c’est-à-dire en supériorité numérique. 
 Une ligne de 3 billes ou plus ne peut jamais être poussée par l’adversaire. Les Sumitos possibles sont donc :
