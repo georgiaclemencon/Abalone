@@ -27,12 +27,12 @@ Il y a plusieurs placements possibles au départ, les plus populaires sont :
 
 J'ai fait le choix d’implémenter d’autres positions pour permettre à ce jeu d’être plus fourni. C’est pourquoi j'ai également retenu la Marguerite Allemande, l’Alien, la Domination, l’Infiltration, le Wall, les Snakes et le « face à face » dont les dispositions sont disponibles en annexe.
 
-#Mouvements possibles
+# Mouvements possibles
 
 A chaque tour, chaque joueur peut faire un mouvement d’une, deux, ou trois billes de sa couleur. 
 Plusieurs billes peuvent uniquement être bougées si elles sont connexes aux autres billes et si elles sont en ligne. De plus, toutes les billes doivent être déplacées dans la même direction. Il est possible de déplacer les billes par le côté, le long de la position courante des billes. 
 
-#Les mouvements « Sumito » et les situations spéciales
+# Les mouvements « Sumito » et les situations spéciales
 
 Pour pouvoir pousser les billes de son adversaire, le joueur doit se trouver en position de Sumito, c’est-à-dire en supériorité numérique. 
 Une ligne de 3 billes ou plus ne peut jamais être poussée par l’adversaire. Les Sumitos possibles sont donc :
@@ -47,7 +47,7 @@ Une autre règle importante dans Abalone concerne les situations de « Pac ».
 -	Quatre billes contre trois autres
 -	Une bille alliée empêche le Sumito. 
 
-#Les Algorithmes utilisés
+# Les Algorithmes utilisés
 
 Algorithme minimax : 
 
@@ -58,14 +58,14 @@ Cette situation de recherche jusqu’à l’atteinte de positions terminales ne 
 
 Algorithme NégaMax : 
 
-Il s’agit d’une implémentation de minimax mais en convention Négamax, c’est à dire que plutôt que de tester si on est à un niveau pair ou impair pour savoir si on cherche à maximiser ou à minimiser l’évaluation, on peut inverser le signe des évaluations à chaque niveau, et toujours chercher à maximiser. Ce qui représente un gain de calcul considérable dans le cas d’Abalone.
+Il s’agit d’une implémentation de minimax mais en convention Négamax, c’est à dire que plutôt que de tester si on est à un niveau pair ou impair pour savoir si on cherche à maximiser ou à minimiser l’évaluation, on peut inverser le signe des évaluations à chaque niveau, et toujours chercher à maximiser. Ce qui représente un gain de calcul considérable dans le cas d’Abalone.
 
 Algorithme alpha-beta : 
 
 Le problème de Minimax est que les informations ne circulent que dans un seul sens :  des feuilles vers la racine. Il est ainsi nécessaire d’avoir développé chaque feuille de l’arbre de recherche pour pouvoir propager les informations sur les scores des feuilles vers la racine. 
 Le principe de l’élagage alpha-beta est d’éviter la génération de feuilles et de parties de l’arbre qui sont inutiles. 
-Pour ce faire, cet algorithme repose sur l’idée de la génération de l’arbre selon un processus dit en « profondeur d’abord » où, avant de développer un frère, il convient de faire un nœud. A cette idée vient se greffer la stratégie qui consiste à utiliser l’information en la remontant des feuilles et également en la redescendant vers d’autres feuilles.
-Le principe d’alpha-beta est de tenir à jour deux variables α et β qui contiennent respectivement à chaque moment du développement de l’arbre la valeur minimale que le joueur peut espérer obtenir pour le coup à jouer étant donné la position où il se trouve et la valeur maximale. Certains développements de l’arbre sont arrêtés car ils indiquent qu’un des joueurs a l’opportunité de faire des coups qui violent le fait que α est obligatoirement la note la plus basse que le joueur Max sait pouvoir obtenir ou que β est la valeur maximale que le joueur Min autorisera Max à obtenir.
+Pour ce faire, cet algorithme repose sur l’idée de la génération de l’arbre selon un processus dit en « profondeur d’abord » où, avant de développer un frère, il convient de faire un nœud. A cette idée vient se greffer la stratégie qui consiste à utiliser l’information en la remontant des feuilles et également en la redescendant vers d’autres feuilles.
+Le principe d’alpha-beta est de tenir à jour deux variables α et β qui contiennent respectivement à chaque moment du développement de l’arbre la valeur minimale que le joueur peut espérer obtenir pour le coup à jouer étant donné la position où il se trouve et la valeur maximale. Certains développements de l’arbre sont arrêtés car ils indiquent qu’un des joueurs a l’opportunité de faire des coups qui violent le fait que α est obligatoirement la note la plus basse que le joueur Max sait pouvoir obtenir ou que β est la valeur maximale que le joueur Min autorisera Max à obtenir.
 
 # La fonction d’évaluation
 
