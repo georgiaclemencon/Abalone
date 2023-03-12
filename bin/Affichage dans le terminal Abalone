@@ -1,0 +1,163 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "./zColor.h"
+
+#define X 17
+#define Y 9
+
+typedef enum
+{
+    PAS_JOUABLE,
+    EJECTEE,
+    NOIR,
+    BLANC,
+    LIBRE
+} TYPE_CASE;
+
+typedef struct
+{
+    int posX;
+    int posY;
+    TYPE_CASE type;
+} CASE;
+
+void iniPlateau(CASE monPlateau[Y][X]);
+void affichePlateau(CASE monPlateau[Y][X]);
+
+int main()
+{
+    CASE plateau[Y][X];
+    iniPlateau(plateau);
+    printf("resultat : %d\n", ((1 + 2) % (0 + 2)));
+    affichePlateau(plateau);
+    return 0;
+}
+
+void iniPlateau(CASE monPlateau[Y][X])
+{
+
+    for (int line = 0; line < Y; line++)
+    {
+        for (int col = 0; col < X; col++)
+        {
+            monPlateau[line][col].posX = col;
+            monPlateau[line][col].posY = line;
+
+            if ((line % 2) == 0)
+            {
+                if ((col % 2) == 0)
+                    monPlateau[line][col].type = LIBRE;
+                else
+                    monPlateau[line][col].type = PAS_JOUABLE;
+            }
+            else
+            {
+                if ((col % 2) != 0)
+                    monPlateau[line][col].type = LIBRE;
+                else
+                    monPlateau[line][col].type = PAS_JOUABLE;
+            }
+        }
+    }
+    // // Ligne 0 8
+    // for (int i = 0; i < 4; i++)
+    // {
+    //     monPlateau[i][0].type = EJECTEE;
+    //     monPlateau[i][8].type = EJECTEE;
+
+    //     monPlateau[13 + i][0].type = EJECTEE;
+    //     monPlateau[13 + i][8].type = EJECTEE;
+    // }
+
+    // // Ligne 1 7
+    // for (int i = 0; i < 3; i++)
+    // {
+    //     monPlateau[i][1].type = EJECTEE;
+    //     monPlateau[i][7].type = EJECTEE;
+
+    //     monPlateau[14 + i][1].type = EJECTEE;
+    //     monPlateau[14 + i][7].type = EJECTEE;
+    // }
+
+    // // Ligne 2 6
+    // for (int i = 0; i < 2; i++)
+    // {
+    //     monPlateau[i][2].type = EJECTEE;
+    //     monPlateau[i][6].type = EJECTEE;
+
+    //     monPlateau[15 + i][2].type = EJECTEE;
+    //     monPlateau[15 + i][6].type = EJECTEE;
+    // }
+    // // Ligne 3 5
+
+    // monPlateau[0][3].type = EJECTEE;
+    // monPlateau[0][5].type = EJECTEE;
+
+    // monPlateau[16][3].type = EJECTEE;
+    // monPlateau[16][5].type = EJECTEE;
+
+    for (int j = 0; j < 4; j++)
+    {
+        for (int i = 0; i < (4 - j); i++)
+        {
+            monPlateau[0 + j][i].type = EJECTEE;
+            monPlateau[8 - j][i].type = EJECTEE;
+
+            monPlateau[0 + j][13 + i + j].type = EJECTEE;
+            monPlateau[8 - j][13 + i + j].type = EJECTEE;
+        }
+    }
+
+    for (int line = 0; line < Y; line++)
+    {
+        for (int col = 0; col < X; col++)
+        {
+            if (monPlateau[line][col].type == LIBRE)
+            {
+                if (line < 2)
+                    monPlateau[line][col].type = NOIR;
+                if (line > 6)
+                    monPlateau[line][col].type = BLANC;
+                if (line == 2 && col > 5 && col < 11)
+                    monPlateau[line][col].type = NOIR;
+                if (line == 6 && col > 5 && col < 11)
+                    monPlateau[line][col].type = BLANC;
+            }
+        }
+    }
+}
+
+void affichePlateau(CASE monPlateau[Y][X])
+{
+    printf("\e[1;1H\e[2J"); // clear screen
+    for (int line = 0; line < Y; line++)
+    {
+        for (int col = 0; col < X; col++)
+        {
+            switch (monPlateau[line][col].type)
+            {
+            case PAS_JOUABLE:
+                printf(BLUHB " ");
+                break;
+            case EJECTEE:
+                printf(REDHB " ");
+                break;
+            case NOIR:
+                printf(BLKHB " ");
+                break;
+            case BLANC:
+                printf(WHTHB " ");
+                break;
+            case LIBRE:
+                printf(reset " ");
+                break;
+
+            default:
+                printf(YELHB " ");
+                break;
+            }
+        }
+        printf(reset "\n");
+    }
+    printf("\n");
+}
